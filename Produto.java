@@ -56,12 +56,15 @@ public class Produto {
         CalculadoraTrib.calcularImposto(preco);
     }
 
-    public void validarPreco() throws EstoqueException {
-        if (this.preco <= 0) {
-            throw new EstoqueException("Preço inválido");
+    public static void validarPrecoEstoque(double preco) throws EstoqueException {
+        if (preco <= 0) {
+            throw new EstoqueException("Preço precisa ser maior que 0");
         }
-        if (this.quantidade <= 0){
-            throw new EstoqueException("Item fora de estoque");
+    }
+
+    public static void validarQuantidadeEstoque(int quantidade) throws EstoqueException {
+        if (quantidade <= 0) {
+            throw new EstoqueException("Quantidade precisa ser maior que 0");
         }
     }
 
