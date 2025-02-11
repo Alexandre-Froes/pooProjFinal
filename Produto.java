@@ -1,9 +1,13 @@
+import java.util.HashSet;
+
 public class Produto {
 
     private String nome;
     private double preco;
     private int estoque;
     private Categoria categoria;
+    private static HashSet<Produto> listaProdutos = new HashSet<>();
+
     
     public Produto() {
     }
@@ -61,12 +65,16 @@ public class Produto {
         }
     }
 
-    public static void validarQuantidadeEstoque(int quantidade) throws EstoqueException {
-        if (quantidade <= 0) {
-            throw new EstoqueException("Quantidade precisa ser maior que 0");
+    public static void validarEstoque(int estoque) throws EstoqueException {
+        if (estoque <= 0) {
+            throw new EstoqueException("estoque precisa ser maior que 0");
         }
     }
 
+    public static void addProduto(Produto produto) {
+        listaProdutos.add(produto);
+    }
+    
     public void diminuirEstoque(int quantidade) throws EstoqueException {
         if (quantidade > estoque) {
             throw new EstoqueException("Estoque insuficiente para " + nome);
