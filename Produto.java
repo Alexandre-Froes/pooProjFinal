@@ -2,16 +2,16 @@ public class Produto {
 
     private String nome;
     private double preco;
-    private int quantidade;
+    private int estoque;
     private Categoria categoria;
     
     public Produto() {
     }
 
-    public Produto(String nome, double preco, int quantidade, Categoria categoria) {
+    public Produto(String nome, double preco, int estoque, Categoria categoria) {
         this.nome = nome;
         this.preco = preco;
-        this.quantidade = quantidade;
+        this.estoque = estoque;
         this.categoria = categoria;
     }
 
@@ -31,12 +31,12 @@ public class Produto {
         this.preco = preco;
     }
 
-    public int getQuantidade() {
-        return quantidade;
+    public int getestoque() {
+        return estoque;
     }
 
-    public void setQuantidade(int quantidade) {
-        this.quantidade = quantidade;
+    public void setestoque(int estoque) {
+        this.estoque = estoque;
     }
 
     public Categoria getCategoria() {
@@ -47,9 +47,8 @@ public class Produto {
         this.categoria = categoria;
     }
 
-
     public void calcularValorTotal() {
-        System.out.println("Valor total: " + this.preco * this.quantidade);
+        System.out.println("Valor total: " + this.preco * this.estoque);
     }
 
     public void getPrecoComImposto() {
@@ -60,9 +59,20 @@ public class Produto {
         if (this.preco <= 0) {
             throw new EstoqueException("Preço inválido");
         }
-        if (this.quantidade <= 0){
+        if (this.estoque <= 0){
             throw new EstoqueException("Item fora de estoque");
         }
+    }
+
+    public void diminuirEstoque(int quantidade) throws EstoqueException {
+        if (quantidade > estoque) {
+            throw new EstoqueException("Estoque insuficiente para " + nome);
+        }
+        estoque -= quantidade;
+    }
+
+    public void aumentarEstoque(int quantidade) {
+        estoque += quantidade;
     }
 
 }
