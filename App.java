@@ -131,6 +131,7 @@ public class App {
     public static void listarProdutos(){
         Produto.listarProdutos();
     }
+    
     public static void main(String[] args) {
         Scanner ler = new Scanner(System.in);
 
