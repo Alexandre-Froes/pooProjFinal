@@ -35,19 +35,11 @@ public class Produto {
         this.preco = preco;
     }
 
-<<<<<<< HEAD
     public int getEstoque() {
         return estoque;
     }
 
     public void setEstoque(int estoque) {
-=======
-    public int getestoque() {
-        return estoque;
-    }
-
-    public void setestoque(int estoque) {
->>>>>>> 7ab8110949b5ae1c121630660c36bb22d9aef94a
         this.estoque = estoque;
     }
 
@@ -79,10 +71,10 @@ public class Produto {
         }
     }
 
-<<<<<<< HEAD
     public static void addProduto(Produto produto) {
         listaProdutos.add(produto);
-=======
+    }
+    
     public void diminuirEstoque(int quantidade) throws EstoqueException {
         if (quantidade > estoque) {
             throw new EstoqueException("Estoque insuficiente para " + nome);
@@ -92,7 +84,6 @@ public class Produto {
 
     public void aumentarEstoque(int quantidade) {
         estoque += quantidade;
->>>>>>> 7ab8110949b5ae1c121630660c36bb22d9aef94a
     }
 
 }
