@@ -26,21 +26,28 @@ public class Categoria {
     }
 
     public static boolean categoriaExiste(String nome){
-        for(Categoria c : categorias){
-            if(c.getNome().equalsIgnoreCase(nome)){
-                return true;
-            }
-        }
-        return false;
+        return categorias.contains(new Categoria(nome));
     }
 
     public static boolean isCategoriasEmpty(){
         return categorias.isEmpty();
     }
 
-    public static void addCategorias(String nome){
+    public static boolean addCategorias(String nome){
         Categoria cat = new Categoria(nome);
-        categorias.add(cat);
+        return categorias.add(cat);
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if(this == obj) return true;
+        if(obj == null || getClass() != obj.getClass()) return false;
+        Categoria c = (Categoria) obj;
+        return nome.equalsIgnoreCase(c.nome);
+    }
+
+    @Override
+    public int hashCode() {
+        return nome.toLowerCase().hashCode();
+    }
 }

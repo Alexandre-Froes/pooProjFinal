@@ -3,15 +3,47 @@ import java.util.Scanner;
 
 public class App {
 
-    public static void adicionarCategorias(){
+    public static String menu(){
+        return 
+        "1 - adicionar produto\n" +
+        "2 - adicionar categoria\n" +
+        "3 - listar produtos\n" +
+        "4 - montar carrinho\n" +
+        "5 - sair\n";
+    }
+
+    public static void adicionarCategorias(Scanner ler){
         Categoria.addCategorias("Eletronico");
         Categoria.addCategorias("Alimento");
         Categoria.addCategorias("Brinquedo");
+
+        do{
+            System.out.println("Qual categoria deseja adicionar?");
+            
+            if(!Categoria.addCategorias(ler.nextLine())){
+                System.out.println("Categoria já existe");
+            
+            }else{
+                System.out.println("Categoria adicionada com sucesso!!");
+            }
+            
+            System.out.println("Deseja adicionar mais categorias? (s/n)");
+            String opcao = ler.nextLine();
+
+            if(opcao.equalsIgnoreCase("s")){
+                continue;
+            
+            }else{
+                break;
+            }
+
+        }while(true);
+
     }
 
     public static void adicionarProduto(Scanner ler){
         System.out.println("Digite o nome do produto: ");
-        
+
         String nome = ler.nextLine();
 
         boolean precoValido = false;
@@ -96,39 +128,39 @@ public class App {
         System.out.println("\nProduto cadastrado com sucesso!!");
     }
 
+    public static void listarProdutos(){
+        Produto.listarProdutos();
+    }
     public static void main(String[] args) {
         Scanner ler = new Scanner(System.in);
 
         int opcao;
         do{
+            System.out.println(menu());
+            opcao = ler.nextInt();
+            ler.nextLine();
+    
+            switch (opcao) {
+                case 1:
+                    adicionarProduto(ler);
+                    break;
+                case 2:
+                    adicionarCategorias(ler);
+                    break;
+                case 3:
+                    listarProdutos();
+                    break;
+                case 4:    
+                    // montarCarrinho(ler);
+                    break;
+                case 5:
+                    System.out.println("Saindo...");
+                    break;
+                default:
+                    System.out.println("Opção inválida");
+                    break;
+            }
             
-        }
-        menu();
-        opcao = ler.nextInt();
-
-        switch (opcao) {
-            case 1:
-                adicionarProduto(ler);
-                break;
-            case 2:
-                adicionarCategorias();
-                break;
-            case 3:
-                listarProdutos();
-                break;
-            case 4:    
-                montarCarrinho(ler);
-                break;
-            case 5:
-                System.out.println("Saindo...");
-                break;
-            default:
-                System.out.println("Opção inválida");
-                break;
-        }
-
-
-        adicionarCategorias();
-        adicionarProduto(ler);
+        }while(true);
     }
 }

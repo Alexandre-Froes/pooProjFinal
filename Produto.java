@@ -86,4 +86,10 @@ public class Produto {
         estoque += quantidade;
     }
 
+    public static void listarProdutos(){
+        for(Produto p : listaProdutos){
+            System.out.println("- " + p.getNome());
+        }
+    }
+
 }
