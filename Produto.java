@@ -18,7 +18,7 @@ public class Produto {
         this.estoque = estoque;
         this.categoria = categoria;
     }
-
+    
     public String getNome() {
         return nome;
     }
@@ -79,6 +79,7 @@ public class Produto {
         if (quantidade > estoque) {
             throw new EstoqueException("Estoque insuficiente para " + nome);
         }
+        
         estoque -= quantidade;
     }
 
@@ -90,6 +91,17 @@ public class Produto {
         for(Produto p : listaProdutos){
             System.out.println("- " + p.getNome());
         }
+        System.out.println();
+    }
+    public static void listarProdutosQuantidade(){
+        for(Produto p : listaProdutos){
+            System.out.println("- " + p.getNome() + " x" + p.getEstoque() + " unidades");
+        }
+        System.out.println();
+    }
+
+    public static HashSet<Produto> getListaProdutos() {
+        return listaProdutos;
     }
 
 }
