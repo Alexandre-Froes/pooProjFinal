@@ -19,13 +19,9 @@ public class Categoria {
         this.nome = nome;
     }
 
-    public static void adiocionarCategoria(Categoria cat){
-        categorias.add(cat);
-    }
-
     public static void  listarCategorias(){
         for(Categoria c : categorias){
-            System.out.println(c.getNome());
+            System.out.println("- "+ c.getNome());
         }
     }
 
@@ -36,6 +32,15 @@ public class Categoria {
             }
         }
         return false;
+    }
+
+    public static boolean isCategoriasEmpty(){
+        return categorias.isEmpty();
+    }
+
+    public static void addCategorias(String nome){
+        Categoria cat = new Categoria(nome);
+        categorias.add(cat);
     }
 
 }

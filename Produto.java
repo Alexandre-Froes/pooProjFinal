@@ -1,17 +1,21 @@
+import java.util.HashSet;
+
 public class Produto {
 
     private String nome;
     private double preco;
-    private int quantidade;
+    private int estoque;
     private Categoria categoria;
+    private static HashSet<Produto> listaProdutos = new HashSet<>();
+
     
     public Produto() {
     }
 
-    public Produto(String nome, double preco, int quantidade, Categoria categoria) {
+    public Produto(String nome, double preco, int estoque, Categoria categoria) {
         this.nome = nome;
         this.preco = preco;
-        this.quantidade = quantidade;
+        this.estoque = estoque;
         this.categoria = categoria;
     }
 
@@ -31,12 +35,12 @@ public class Produto {
         this.preco = preco;
     }
 
-    public int getQuantidade() {
-        return quantidade;
+    public int getEstoque() {
+        return estoque;
     }
 
-    public void setQuantidade(int quantidade) {
-        this.quantidade = quantidade;
+    public void setEstoque(int estoque) {
+        this.estoque = estoque;
     }
 
     public Categoria getCategoria() {
@@ -49,7 +53,7 @@ public class Produto {
 
 
     public void calcularValorTotal() {
-        System.out.println("Valor total: " + this.preco * this.quantidade);
+        System.out.println("Valor total: " + this.preco * this.estoque);
     }
 
     public void getPrecoComImposto() {
@@ -62,10 +66,14 @@ public class Produto {
         }
     }
 
-    public static void validarQuantidadeEstoque(int quantidade) throws EstoqueException {
-        if (quantidade <= 0) {
-            throw new EstoqueException("Quantidade precisa ser maior que 0");
+    public static void validarEstoque(int estoque) throws EstoqueException {
+        if (estoque <= 0) {
+            throw new EstoqueException("estoque precisa ser maior que 0");
         }
+    }
+
+    public static void addProduto(Produto produto) {
+        listaProdutos.add(produto);
     }
 
 }
