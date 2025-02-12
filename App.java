@@ -176,43 +176,6 @@ public class App {
             }
         } while (!produtoExiste);
     }
-<<<<<<< HEAD
-
-    public static void montarCarrinho(Scanner ler) {
-        int opcao = 0;
-
-        do {
-            System.out.println(MENUCARRINHO);
-            opcao = ler.nextInt();
-            ler.nextLine();
-
-            switch (opcao) {
-                case 1:
-                    adicionarItem(ler);
-                    break;
-                case 2:
-                    // Carrinho.listarCarrinho();
-                    // System.out.println("Digite o nome do produto que deseja remover: ");
-
-                    break;
-                case 3:
-                    
-                    break;
-                case 4:
-                    
-                    break;
-                case 5:
-                    System.out.println("Voltando pro menu principal");
-                    break;
-                default:
-                    System.out.println("Opção inválida");
-                    break;
-            }
-        } while (opcao != 5);
-    }
-
-=======
->>>>>>> 907bbd3164fe9cf9591e59453bd844bf86d883e5
     public static void main(String[] args) {
         Scanner ler = new Scanner(System.in);
 
