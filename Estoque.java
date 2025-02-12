@@ -15,12 +15,10 @@ public class Estoque {
         Produto novoProduto = new Produto(nome, preco, estoqueInicial, categoria);
         if(!listaProdutos.add(novoProduto)) {
             throw new EstoqueException("Produto já existe no estoque");
+        } else {
+            System.out.println("Produto adicionado com sucesso!");
         }
         return novoProduto;
-    }
-
-    public static void addProduto(Produto produto) {
-        listaProdutos.add(produto);
     }
 
     public static void removerProduto(Produto produto) {
@@ -29,10 +27,11 @@ public class Estoque {
     
     public static void listarProdutos(){
         for(Produto p : listaProdutos){
-            System.out.println("- " + p.getNome() + 
-                            " x" + p.getEstoque() + " unidades" + 
-                            " R$ " + p.getPreco() + 
-                            " Categoria: " + p.getCategoria().getNome());
+            System.out.println(
+            "- " + p.getNome() + 
+            " x" + p.getEstoque() + " unidades" + 
+            " R$" + p.getPreco() + 
+            " Categoria: " + p.getCategoria().getNome());
         }
         System.out.println();
     }
@@ -53,12 +52,17 @@ public class Estoque {
         int novoEstoque = produto.getEstoque() + quantidade;
         produto.setEstoque(novoEstoque);
     }
-    
-    public static void aumentarEstoque(Produto produto) {
-        aumentarEstoque(produto, 1);
+
+    // Criamos métodos estáticos, dentro da classe "Estoque"
+    public static Produto buscarProduto(String nome) {
+        for (Produto p : listaProdutos) {
+            if (p.getNome().equalsIgnoreCase(nome)) {
+                return p;
+            }
+        }
+        return null;
     }
 
-    
     public static void validarPrecoEstoque(double preco) throws EstoqueException {
         if (preco <= 0) {
             throw new EstoqueException("Preço precisa ser maior que 0");
@@ -71,14 +75,6 @@ public class Estoque {
         }
     }
 
-    public static Produto buscarProduto(String nome) {
-        for (Produto p : listaProdutos) {
-            if (p.getNome().equalsIgnoreCase(nome)) {
-                return p;
-            }
-        }
-        return null;
-    }
 
     public static HashSet<Produto> getListaProdutos() {
         return listaProdutos;

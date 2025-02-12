@@ -5,6 +5,7 @@ public class App {
 
     public static final String MENU =
         """
+
         1 - adicionar produto
         2 - adicionar categoria
         3 - listar produtos no estoque
@@ -35,11 +36,22 @@ public class App {
     }
 
     public static void adicionarProduto(Scanner ler) {
-        System.out.println("Digite o nome do produto: ");
-        String nome = ler.nextLine();
-    
         boolean precoValido = false;
+        boolean nomeValido = false;
         double preco = 0;
+        String nome;
+
+        do {
+            System.out.println("Digite o nome do produto: ");
+            nome = ler.nextLine();
+            
+            if(Estoque.buscarProduto(nome) != null) {
+                System.out.println("Já existe um produto com este nome. Tente novamente.");
+            } else {
+                nomeValido = true;
+            }
+        } while(!nomeValido);
+    
         do {
             //Tratamento de exceção
             try {
@@ -93,14 +105,10 @@ public class App {
                     Categoria cat = new Categoria(novaCat);
 
                     try {
-                        Produto produto = Estoque.criarProduto(nome, preco, quantidade, cat);
-                        System.out.println("\nProduto cadastrado com sucesso!!");
-                        Estoque.addProduto(produto);
+                        Estoque.criarProduto(nome, preco, quantidade, cat);
                     } catch (EstoqueException e) {
                         System.out.println("Erro ao criar produto: " + e.getMessage());
                     }
-
-                    System.out.println("\nProduto e categoria cadastrados com sucesso!!!");
                 }else{
                     System.out.println("Cadastro cancelado");
                     return;
@@ -122,13 +130,11 @@ public class App {
 
         Categoria cat = new Categoria(categoria);
         try {
-            Produto produto = Estoque.criarProduto(nome, preco, quantidade, cat);
-            System.out.println("\nProduto cadastrado com sucesso!!");
-            Estoque.addProduto(produto);
+            Estoque.criarProduto(nome, preco, quantidade, cat);
+            System.out.println("Produto cadastrado com sucesso!!");
         } catch (EstoqueException e) {
             System.out.println("Erro ao criar produto: " + e.getMessage());
         }
-        System.out.println("\nProduto cadastrado com sucesso!!");
     }
 
     public static void aumentarEstoque(Scanner ler) {
@@ -211,6 +217,6 @@ public class App {
                     break;
             }
             
-        }while(opcao != 7);
+        }while(opcao != 6);
     }
 }
