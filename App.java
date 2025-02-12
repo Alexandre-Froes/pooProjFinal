@@ -131,7 +131,6 @@ public class App {
         Categoria cat = new Categoria(categoria);
         try {
             Estoque.criarProduto(nome, preco, quantidade, cat);
-            System.out.println("Produto cadastrado com sucesso!!");
         } catch (EstoqueException e) {
             System.out.println("Erro ao criar produto: " + e.getMessage());
         }
