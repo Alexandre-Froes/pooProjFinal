@@ -26,12 +26,17 @@ public class Estoque {
     }
     
     public static void listarProdutos(){
-        for(Produto p : listaProdutos){
-            System.out.println(
-            "- " + p.getNome() + 
-            " x" + p.getEstoque() + " unidades" + 
-            " R$" + p.getPreco() + 
-            " Categoria: " + p.getCategoria().getNome());
+        if(listaProdutos.isEmpty()){
+            System.out.println();
+            System.out.println("nenhum produto cadastrado");
+        }else{
+            for(Produto p : listaProdutos){
+                System.out.println(
+                "- " + p.getNome() + 
+                " x" + p.getEstoque() + " unidades" + 
+                " R$" + p.getPreco() + 
+                " Categoria: " + p.getCategoria().getNome());
+            }
         }
         System.out.println();
     }
@@ -44,6 +49,9 @@ public class Estoque {
             throw new EstoqueException("Estoque insuficiente para " + produto.getNome() + " escolha uma quantidade menor que " + produto.getEstoque());
         } else {
             int novoEstoque = produto.getEstoque() - quantidade;
+            if(novoEstoque == 0) {
+                removerProduto(produto);
+            }
             produto.setEstoque(novoEstoque);
         }
     }
