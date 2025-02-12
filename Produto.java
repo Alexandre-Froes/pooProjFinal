@@ -1,8 +1,10 @@
 public class Produto {
 
+    //Atributos encapsulados
     private String nome;
     private double preco;
     private int estoque;
+    //Associação com a classe Categoria
     private Categoria categoria;
 
     public Produto(String nome, double preco, int estoque, Categoria categoria) {
@@ -12,6 +14,7 @@ public class Produto {
         this.categoria = categoria;
     }
     
+    //Getters e Setters publicos
     public String getNome() {
         return nome;
     }

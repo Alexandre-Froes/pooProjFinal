@@ -19,6 +19,8 @@ public class Categoria {
         this.nome = nome;
     }
 
+
+    //Criamos métodos estáticos
     public static void  listarCategorias(){
         for(Categoria c : categorias){
             System.out.println("- "+ c.getNome());

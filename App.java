@@ -14,18 +14,19 @@ public class App {
         """;
 
 
+    //Sobrecarga de métodos
     public static void adicionarCategorias(Scanner ler) {    
         do {
             System.out.println("Qual categoria deseja adicionar?");
             String novaCat = ler.next();
-            adicionarCategoria(novaCat);
+            adicionarCategorias(novaCat);
             
             System.out.println("Deseja adicionar mais? (s/n)");
             if(!ler.next().equalsIgnoreCase("s")) break;
         } while(true);
     }
     
-    public static void adicionarCategoria(String nomeCategoria) {
+    public static void adicionarCategorias(String nomeCategoria) {
         if(!Categoria.addCategorias(nomeCategoria)) {
             System.out.println("Categoria " + nomeCategoria + " já existe");
         } else {
@@ -40,6 +41,7 @@ public class App {
         boolean precoValido = false;
         double preco = 0;
         do {
+            //Tratamento de exceção
             try {
                 System.out.println("Digite o preço do produto: ");
                 preco = ler.nextDouble();
@@ -87,7 +89,7 @@ public class App {
                 if(cadastro.equalsIgnoreCase("s")){
                     System.out.println("Digite o nome da categoria: ");
                     String novaCat = ler.next();
-                    adicionarCategoria(novaCat);
+                    adicionarCategorias(novaCat);
                     Categoria cat = new Categoria(novaCat);
 
                     try {
@@ -176,43 +178,6 @@ public class App {
             }
         } while (!produtoExiste);
     }
-<<<<<<< HEAD
-
-    public static void montarCarrinho(Scanner ler) {
-        int opcao = 0;
-
-        do {
-            System.out.println(MENUCARRINHO);
-            opcao = ler.nextInt();
-            ler.nextLine();
-
-            switch (opcao) {
-                case 1:
-                    adicionarItem(ler);
-                    break;
-                case 2:
-                    // Carrinho.listarCarrinho();
-                    // System.out.println("Digite o nome do produto que deseja remover: ");
-
-                    break;
-                case 3:
-                    
-                    break;
-                case 4:
-                    
-                    break;
-                case 5:
-                    System.out.println("Voltando pro menu principal");
-                    break;
-                default:
-                    System.out.println("Opção inválida");
-                    break;
-            }
-        } while (opcao != 5);
-    }
-
-=======
->>>>>>> 907bbd3164fe9cf9591e59453bd844bf86d883e5
     public static void main(String[] args) {
         Scanner ler = new Scanner(System.in);
 

@@ -2,8 +2,10 @@ import java.util.HashSet;
 import java.util.LinkedHashSet;
 
 public class Estoque {
-    private static HashSet<Produto> listaProdutos = new LinkedHashSet<>();
 
+    //Utilizando a relação de composição
+    private static HashSet<Produto> listaProdutos = new LinkedHashSet<>();
+    
     public static Produto criarProduto(String nome, double preco, int estoqueInicial, Categoria categoria) 
         throws EstoqueException {
         
@@ -35,6 +37,7 @@ public class Estoque {
         System.out.println();
     }
 
+    //Método estático com um throws para tratamento de exceção
     public static void diminuirEstoque(Produto produto, int quantidade) throws EstoqueException {
         if (quantidade <= 0) {
             throw new EstoqueException("Quantidade deve ser maior que zero.");
