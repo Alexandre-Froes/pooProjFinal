@@ -1,16 +1,9 @@
-import java.util.HashSet;
-
 public class Produto {
 
     private String nome;
     private double preco;
     private int estoque;
     private Categoria categoria;
-    private static HashSet<Produto> listaProdutos = new HashSet<>();
-
-    
-    public Produto() {
-    }
 
     public Produto(String nome, double preco, int estoque, Categoria categoria) {
         this.nome = nome;
@@ -59,49 +52,28 @@ public class Produto {
         CalculadoraTrib.calcularImposto(preco);
     }
 
-    public static void validarPrecoEstoque(double preco) throws EstoqueException {
-        if (preco <= 0) {
-            throw new EstoqueException("Preço precisa ser maior que 0");
-        }
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((nome == null) ? 0 : nome.hashCode());
+        return result;
     }
 
-    public static void validarEstoque(int estoque) throws EstoqueException {
-        if (estoque <= 0) {
-            throw new EstoqueException("estoque precisa ser maior que 0");
-        }
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Produto other = (Produto) obj;
+        if (nome == null) {
+            if (other.nome != null)
+                return false;
+        } else if (!nome.equals(other.nome))
+            return false;
+        return true;
     }
-
-    public static void addProduto(Produto produto) {
-        listaProdutos.add(produto);
-    }
-    
-    public void diminuirEstoque(int quantidade) throws EstoqueException {
-        if (quantidade > estoque) {
-            throw new EstoqueException("Estoque insuficiente para " + nome);
-        }
-        
-        estoque -= quantidade;
-    }
-
-    public void aumentarEstoque(int quantidade) {
-        estoque += quantidade;
-    }
-
-    public static void listarProdutos(){
-        for(Produto p : listaProdutos){
-            System.out.println("- " + p.getNome());
-        }
-        System.out.println();
-    }
-    public static void listarProdutosQuantidade(){
-        for(Produto p : listaProdutos){
-            System.out.println("- " + p.getNome() + " x" + p.getEstoque() + " unidades");
-        }
-        System.out.println();
-    }
-
-    public static HashSet<Produto> getListaProdutos() {
-        return listaProdutos;
-    }
-
 }
