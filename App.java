@@ -178,9 +178,6 @@ public class App {
             }
         } while (!quantidadeValida);
     }
-<<<<<<< HEAD
-    
-=======
 
     public static void montarCarrinho(Scanner ler) {
         int opcao = 0;
@@ -215,7 +212,6 @@ public class App {
         } while (opcao != 5);
     }
 
->>>>>>> 32b6c4cae25ae64fdc286e0789e4db314341f05f
     public static void main(String[] args) {
         Scanner ler = new Scanner(System.in);
 
